@@ -1,0 +1,9 @@
+package: github.com/matperez/cbr-http-service
+import:
+- package: github.com/go-kit/kit
+  version: ^0.6.0
+  subpackages:
+  - endpoint
+  - transport/http
+- package: github.com/matperez/go-cbr-client
+  version: ^1.0.1
