@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/matperez/cbr-http-service/cache"
 	"github.com/matperez/go-cbr-client"
 )
 
@@ -14,17 +15,23 @@ type RatesService interface {
 
 type ratesService struct {
 	client cbr.Client
+	cache  cache.Cache
 }
 
-func (s ratesService) GetRate(_ context.Context, currecy string) (float64, error) {
-	rate, err := s.client.GetRate(currecy, time.Now())
-	if err != nil {
-		return 0, err
-	}
-	return rate, nil
+func (s ratesService) GetRate(_ context.Context, currency string) (float64, error) {
+	return s.cache.GetOrSet(currency, func(currency string) (float64, error) {
+		rate, err := s.client.GetRate(currency, time.Now())
+		if err != nil {
+			return 0, err
+		}
+		return rate, nil
+	})
 }
 
 // NewService is a fabric function
-func NewService(client cbr.Client) RatesService {
-	return ratesService{client}
+func NewService(client cbr.Client, cache cache.Cache) RatesService {
+	return ratesService{
+		client,
+		cache,
+	}
 }

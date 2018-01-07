@@ -1,5 +1,5 @@
-hash: 3e87eeab80f06eff4e5dc9f9bd0f3c016c73d4b93bce006838f938b1c64a6086
-updated: 2018-01-07T05:22:19.685311279+05:00
+hash: dd6a4fef934341d8844ee7f4cd8d6f632f677cb55be5bb522f83d3955318223d
+updated: 2018-01-07T13:59:22.295698398+05:00
 imports:
 - name: github.com/go-kit/kit
   version: 4dc7be5d2d12881735283bcab7352178e190fc71
@@ -15,6 +15,8 @@ imports:
   version: b84e30acd515aadc4b783ad4ff83aff3299bdfe0
 - name: github.com/matperez/go-cbr-client
   version: b9451d299555712ac572cfab47de8da6f8dc41ed
+- name: github.com/patrickmn/go-cache
+  version: a3647f8e31d79543b2d0f0ae2fe5c379d72cedc0
 - name: golang.org/x/text
   version: e19ae1496984b1c655b8044a65c0300a3c878dd3
   subpackages:

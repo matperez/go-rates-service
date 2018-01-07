@@ -10,6 +10,7 @@ import (
 	"github.com/go-kit/kit/endpoint"
 
 	httptransport "github.com/go-kit/kit/transport/http"
+	"github.com/matperez/cbr-http-service/cache"
 	cbr "github.com/matperez/go-cbr-client"
 )
 
@@ -24,7 +25,7 @@ func init() {
 
 func main() {
 	log.Println("Starting...")
-	svc := NewService(cbr.NewClient())
+	svc := NewService(cbr.NewClient(), cache.New())
 
 	getRateHandler := httptransport.NewServer(
 		makeGetRateEndpoint(svc),
